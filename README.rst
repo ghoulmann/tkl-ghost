@@ -1,5 +1,10 @@
+Ghost for TKL
+=============
+
+An attempt - in progress - to build Ghost blogging platform appliance using TKLDEV from Turnkey Linux. Based on Turnkey Core - below.
+
 TurnKey Core - Common Base for All Appliances
-=============================================
+---------------------------------------------
 
 The common base system on top of which all TurnKey Linux appliances are
 built. It includes custom automated backup and migration software, a web
