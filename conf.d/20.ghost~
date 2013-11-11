@@ -1,0 +1,11 @@
+#Get Ghost from git
+git clone https://github.com/TryGhost/Ghost.git -P /opt/
+gem install sass bourbon
+git submodule update --init
+npm install -g grunt-cli
+npm install sqlite3
+npm install
+
+
+
+
