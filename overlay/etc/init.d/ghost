@@ -17,7 +17,7 @@
 PATH=/sbin:/usr/sbin:/bin:/usr/bin
 DESC="Ghost content publishing platform"
 NAME=ghost
-GHOST_ROOT=/opt/Ghost
+GHOST_ROOT=/opt/ghost
 GHOST_GROUP=www-data
 GHOST_USER=www-data
 DAEMON=/usr/local/bin/node
