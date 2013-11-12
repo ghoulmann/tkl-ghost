@@ -1,6 +1,6 @@
 #!/bin/bash -ex
 #get node
 wget http://nodejs.org/dist/v0.10.21/node-v0.10.21.tar.gz -P /tmp/
-cd /tmp/node-v0.10.21/ && configure
+cd /tmp/node-v0.10.21/ && ./configure
 cd /tmp/node-v0.10.21/ && make
 cd /tmp/node-v0.10.21/ && make install
