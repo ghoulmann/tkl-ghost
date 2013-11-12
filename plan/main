@@ -4,5 +4,8 @@ build-essential
 git
 nginx
 rubygems
+curl
+python-pygments
+
 
 

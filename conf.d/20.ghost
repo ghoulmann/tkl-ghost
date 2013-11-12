@@ -1,16 +1,25 @@
 #!/bin/bash -ex
-
-#Get Ghost from git
-git clone https://github.com/TryGhost/Ghost.git -P /opt/
-gem install sass bourbon
-git submodule update --init
-npm install -g grunt-cli
+GHOST_URL="https://github.com/TryGhost/Ghost.git"
+GHOST_DIR="/opt/ghost"
+#install sqlite3 with npm
 npm install sqlite3
-npm install
+#Get Ghost from git
+git clone $GHOST_URL $GHOST_DIR
+#install sass and bourbon with gem
+cd $GHOST_DIR && gem install sass bourbon
+#updates casper theme
+cd $GHOST_DIR && git submodule update --init
+cd $GHOST_DIR && npm install -g grunt-cli
+cd $GHOST_DIR && npm install
+cd $GHOST_DIR && grunt init
+cd $GHOST_DIR && cp config.example.js config.js
 
 #nginx site enable
 ln -s /etc/nginx/sites-available/ghost /etc/nginx/sites-enabled/ghost
-
+#disable default
+rm /etc/nginx/sites-enabled/default
+#stop service
+/etc/init.d/nginx stop
 
 
 

@@ -1,0 +1,9 @@
+#!/bin/bash -ex
+NODE_URL="https://github.com/joyent/node.git"
+NODE_TARGET="/tmp/node"
+
+#get node
+git clone $NODE_URL $NODE_TARGET
+cd $NODE_TARGET && ./configure
+cd $NODE_TARGET && make
+cd $NODE_TARGET && make install

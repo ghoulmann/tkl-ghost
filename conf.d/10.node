@@ -1,6 +1,7 @@
 #!/bin/bash -ex
+NODE_URL="http://nodejs.org/dist/v0.10.21/node-v0.10.21.tar.gz"
+NODE_TARGET="/tmp/"
+NODE_V="node-v0.10.21"
 #get node
-wget http://nodejs.org/dist/v0.10.21/node-v0.10.21.tar.gz -P /tmp/
-cd /tmp/node-v0.10.21/ && ./configure
-cd /tmp/node-v0.10.21/ && make
-cd /tmp/node-v0.10.21/ && make install
+wget $NODE_URL -P $NODE_TARGET
+tar xvzf /tmp/`$NODE_V`.tar.gz -C $NODE_TARGET
