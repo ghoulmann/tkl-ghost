@@ -1,6 +1,19 @@
 #!/bin/bash -ex
+
+#Config Vars
+NODE_URL="http://nodejs.org/dist/v0.10.21/node-v0.10.21.tar.gz"
+NODE_TARGET="/tmp/"
+NODE_V="node-v0.10.21"
 GHOST_URL="https://github.com/TryGhost/Ghost.git"
 GHOST_DIR="/opt/ghost"
+
+#get node
+wget $NODE_URL -P $NODE_TARGET
+tar xvzf /tmp/$NODE_V.tar.gz -C $NODE_TARGET
+cd $NODE_TARGET/$NODE_V && ./configure
+cd $NODE_TARGET/$NODE_V && make
+cd $NODE_TARGET/$NODE_V && make install
+
 #install sqlite3 with npm
 npm install sqlite3
 #Get Ghost from git
@@ -14,14 +27,12 @@ cd $GHOST_DIR && npm install
 cd $GHOST_DIR && grunt init
 cd $GHOST_DIR && cp config.example.js config.js
 
+#ghost daemon
+chmod +x /etc/init.d/ghost
+update-rc.d ghost defaults
 #nginx site enable
 ln -s /etc/nginx/sites-available/ghost /etc/nginx/sites-enabled/ghost
 #disable default
 rm /etc/nginx/sites-enabled/default
 #stop service
 /etc/init.d/nginx stop
-
-
-
-
-
