@@ -28,6 +28,7 @@ cd $GHOST_DIR && grunt init
 cd $GHOST_DIR && cp config.example.js config.js
 
 #ghost daemon
+chmod +x /etc/init.d/ghost
 update-rc.d ghost defaults
 #nginx site enable
 ln -s /etc/nginx/sites-available/ghost /etc/nginx/sites-enabled/ghost
