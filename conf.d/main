@@ -26,6 +26,7 @@ cd $GHOST_DIR && npm install -g grunt-cli
 cd $GHOST_DIR && npm install
 cd $GHOST_DIR && grunt init
 cd $GHOST_DIR && cp config.example.js config.js
+chown -R www-data:www-data /opt/ghost
 
 #ghost daemon
 chmod +x /etc/init.d/ghost

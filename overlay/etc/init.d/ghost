@@ -17,11 +17,12 @@
 PATH=/sbin:/usr/sbin:/bin:/usr/bin
 DESC="Ghost content publishing platform"
 NAME=ghost
-GHOST_ROOT=/opt/Ghost
+GHOST_ROOT=/opt/ghost
 GHOST_GROUP=www-data
 GHOST_USER=www-data
 DAEMON=/usr/local/bin/node
-DAEMON_ARGS="$GHOST_ROOT/index.js --production"
+#DAEMON_ARGS="$GHOST_ROOT/index.js --production"
+DAEMON_ARGS="$GHOST_ROOT/index.js"
 PIDFILE=/var/run/$NAME.pid
 SCRIPTNAME=/etc/init.d/$NAME
 
