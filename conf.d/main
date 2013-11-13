@@ -9,7 +9,7 @@ GHOST_DIR="/opt/ghost"
 
 #get node
 wget $NODE_URL -P $NODE_TARGET
-tar xvzf /tmp/`$NODE_V`.tar.gz -C $NODE_TARGET
+tar xvzf /tmp/$NODE_V.tar.gz -C $NODE_TARGET
 cd $NODE_TARGET/$NODE_V && ./configure
 cd $NODE_TARGET/$NODE_V && make
 cd $NODE_TARGET/$NODE_V && make install
