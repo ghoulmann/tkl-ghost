@@ -1,9 +1,0 @@
-#!/bin/bash -e
-# initialize Ghost
-
-. /etc/default/inithooks
-
-[ -e $INITHOOKS_CONF ] && . $INITHOOKS_CONF
-
-$INITHOOKS_PATH/bin/ghost_inithook.py --uname --email --URL --password
-
