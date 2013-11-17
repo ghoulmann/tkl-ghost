@@ -8,5 +8,5 @@ curl
 python-pygments
 python2.7-dev
 python-setuptools
-
+python-sqlite2
 
