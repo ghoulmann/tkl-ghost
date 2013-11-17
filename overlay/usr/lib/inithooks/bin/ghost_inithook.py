@@ -96,6 +96,7 @@ def main():
         cur.execute('UPDATE Users SET Password=\"%s\" WHERE Id="1";' % hash)
         cur.execute('UPDATE Users SET name=\"%s\" WHERE id="1";' % uname)
         cur.execute('UPDATE Users SET email=\"%s\" WHERE id="1";' % email)
+        cur.execute('UPDATE Users SET status=\"active\" WHERE id="1";')
         cur.execute('UPDATE Settings SET email=\"%s\" WHERE title=\"Ghost\";' % email)
         con.commit()
 
