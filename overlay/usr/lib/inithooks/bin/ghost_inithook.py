@@ -63,7 +63,10 @@ def main():
     if not URL:
         if 'd' not in locals():
             d = Dialog('Turnkey Linux - First boot configuration')
-        URL = d.get_input("Ghost URL","Enter the full URL of the Ghost Blog.","http://tryghost.org")
+        URL = d.get_input(
+            "Ghost URL",
+            "Enter the full URL of the Ghost Blog.",
+            "http://tryghost.org")
 
     if not uname:
         if 'd' not in locals():
@@ -93,6 +96,7 @@ def main():
         cur.execute('UPDATE Users SET Password=\"%s\" WHERE Id="1";' % hash)
         cur.execute('UPDATE Users SET name=\"%s\" WHERE id="1";' % uname)
         cur.execute('UPDATE Users SET email=\"%s\" WHERE id="1";' % email)
+        cur.execute('UPDATE Settings SET email=\"%s\" WHERE title=\"Ghost\";' % email)
         con.commit()
 
 
