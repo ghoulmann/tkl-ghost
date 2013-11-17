@@ -1,5 +1,0 @@
-#include <turnkey/base>
-
-build-essential
-git
-nginx

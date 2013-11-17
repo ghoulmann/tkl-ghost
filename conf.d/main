@@ -10,7 +10,7 @@ GHOST_DIR="/opt/ghost"
 #python
 easy_install pip
 pip install py-bcrypt
-pip install tk
+pip install sqlite3
 #get node
 wget $NODE_URL -P $NODE_TARGET
 tar xvzf /tmp/$NODE_V.tar.gz -C $NODE_TARGET
