@@ -6,4 +6,3 @@
 [ -e $INITHOOKS_CONF ] && . $INITHOOKS_CONF
 
 $INITHOOKS_PATH/bin/ghost_inithook.py --uname --email --URL --password
-chown www-data:www-data /opt/ghost/content/data/*
