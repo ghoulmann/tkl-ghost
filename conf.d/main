@@ -39,11 +39,12 @@ chown -R www-data:www-data /opt/ghost
 #chmod +x /etc/init.d/ghost
 #update-rc.d ghost defaults
 crontab /tmp/for-cron.txt
-
+cd /opt/ghost && npm start
 
 #nginx site enable
 ln -s /etc/nginx/sites-available/ghost /etc/nginx/sites-enabled/ghost
 #disable default
 rm /etc/nginx/sites-enabled/default
 #stop service
+cd /opt/ghost && npm stop
 /etc/init.d/nginx stop
