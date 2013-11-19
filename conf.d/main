@@ -40,6 +40,9 @@ chown -R www-data:www-data /opt/ghost
 #update-rc.d ghost defaults
 crontab /tmp/for_cron.txt
 
+#start ghost
+/usr/local/bin/ghost-starter.sh
+killall node
 #nginx site enable
 ln -s /etc/nginx/sites-available/ghost /etc/nginx/sites-enabled/ghost
 #disable default
