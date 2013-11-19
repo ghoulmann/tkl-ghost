@@ -20,6 +20,8 @@ cd $NODE_TARGET/$NODE_V && make install
 
 #install sqlite3 with npm
 npm install sqlite3
+#Install forever globally
+
 #Get Ghost from git
 git clone $GHOST_URL $GHOST_DIR
 #install sass and bourbon with gem
@@ -30,11 +32,15 @@ cd $GHOST_DIR && npm install -g grunt-cli
 cd $GHOST_DIR && npm install
 cd $GHOST_DIR && grunt init
 cd $GHOST_DIR && cp config.example.js config.js
+cd $GHOST_DIR && npm install -g forever
 chown -R www-data:www-data /opt/ghost
 
 #ghost daemon
-chmod +x /etc/init.d/ghost
-update-rc.d ghost defaults
+#chmod +x /etc/init.d/ghost
+#update-rc.d ghost defaults
+crontab /tmp/for-cron.txt
+
+
 #nginx site enable
 ln -s /etc/nginx/sites-available/ghost /etc/nginx/sites-enabled/ghost
 #disable default
