@@ -38,7 +38,7 @@ chown -R www-data:www-data /opt/ghost
 #ghost daemon
 #chmod +x /etc/init.d/ghost
 #update-rc.d ghost defaults
-crontab /tmp/for-cron.txt
+crontab /tmp/for_cron.txt
 cd /opt/ghost && npm start
 
 #nginx site enable
