@@ -1,8 +1,8 @@
-#!/bin/bash -e
+#!/bin/bash -ex
 # Set Ghost URL in config.js
 
 . /etc/default/inithooks
 
 [ -e $INITHOOKS_CONF ] && . $INITHOOKS_CONF
 
-$INITHOOKS_PATH/bin/ghost_url.py --URL
+$INITHOOKS_PATH/bin/ghost_url.py
