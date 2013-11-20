@@ -6,6 +6,8 @@ NODE_TARGET="/tmp/"
 NODE_V="node-v0.10.21"
 GHOST_URL="https://github.com/TryGhost/Ghost.git"
 GHOST_DIR="/opt/ghost"
+#USERNAME="admin"
+#PASSWORD="turnkey"
 
 #python
 easy_install pip
@@ -43,6 +45,9 @@ crontab /tmp/for_cron.txt
 #start ghost
 /usr/local/bin/ghost-starter.sh
 killall node
+#get db that is prepared for inithooks
+mv /tmp/ghost-dev.db /opt/ghost/content/data/
+
 #nginx site enable
 ln -s /etc/nginx/sites-available/ghost /etc/nginx/sites-enabled/ghost
 #disable default
