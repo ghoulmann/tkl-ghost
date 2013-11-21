@@ -3,6 +3,17 @@ Ghost for TKL
 
 An attempt - in progress - to build Ghost blogging platform appliance using TKLDEV from Turnkey Linux. Based on Turnkey Core - below.
 
+`Ghost_` home: https://ghost.org/
+
+`Source`_ for Ghost is on Github: https://github.com/TryGhost
+
+To Do
+-----
+
+* Change URL inithook to use http://$ipaddr (sed)
+* Develop README.rst
+* Post for TKL
+
 TurnKey Core - Common Base for All Appliances
 ---------------------------------------------
 
