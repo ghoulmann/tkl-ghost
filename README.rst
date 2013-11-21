@@ -103,6 +103,8 @@ Features:
 
 - **Automatic time synchronization with NTP**
 
+.. _Ghost: https://ghost.org/
+.. _Source: https://github.com/TryGhost
 .. _screenshots: http://www.turnkeylinux.org/screenshots/148
 .. _ISO images: http://www.turnkeylinux.org/docs/builds#iso
 .. _Virtual Machine images: http://www.turnkeylinux.org/docs/builds#vm
