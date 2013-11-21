@@ -7,6 +7,8 @@ An attempt - in progress - to build Ghost blogging platform appliance using TKLD
 
 `Source`_ for Ghost is on Github: https://github.com/TryGhost
 
+Just about done; some cleaning to do.
+
 To Do
 -----
 
