@@ -31,7 +31,7 @@ cd $GHOST_DIR && gem install sass bourbon
 #updates casper theme
 cd $GHOST_DIR && git submodule update --init
 cd $GHOST_DIR && npm install -g grunt-cli
-cd $GHOST_DIR && npm install
+cd $GHOST_DIR && npm install --production
 cd $GHOST_DIR && grunt init
 cd $GHOST_DIR && cp config.example.js config.js
 cd $GHOST_DIR && npm install -g forever
