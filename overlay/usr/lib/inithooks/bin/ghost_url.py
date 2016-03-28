@@ -47,7 +47,7 @@ def main():
             "Enter the full URL of the Ghost Blog.",
             "http://tryghost.org")
 
-    for line in fileinput.FileInput("/opt/ghost/config.js",inplace=1):
+    for line in fileinput.FileInput("/var/www/ghost/config.js",inplace=1):
         line = line.replace("http://my-ghost-blog.com",addy)
         print line
     

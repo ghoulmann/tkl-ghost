@@ -3,5 +3,5 @@
 
 . /etc/default/inithooks
 
-ghostdata=/opt/ghost/content/data/ghost-dev.db
+ghostdata=/var/www/ghost/content/data/ghost.db
 chown www-data:www-data $ghostdata

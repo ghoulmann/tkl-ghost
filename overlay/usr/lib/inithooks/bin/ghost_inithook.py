@@ -52,7 +52,7 @@ def main():
 
     if not password:
         d = Dialog('TurnKey Linux - First boot configuration')
-        password = d.get_password("Ghost Password","Enter new password for the Ghost blogger account (> 8 characters).")
+        password = d.get_password("Ghost Password","Enter new password for the Ghost blogger account (>= 8 characters).")
 
     if not email:
         if 'd' not in locals():
@@ -88,7 +88,7 @@ def main():
 #    m.execute('UPDATE xoops.xoops_users SET email=\"%s\" WHERE uname=\"admin\";' % email)
 #    m.execute('UPDATE xoops.xoops_config SET conf_value=\"%s\" WHERE conf_name=\"adminmail\";' % email)
 
-    dbase = "/opt/ghost/content/data/ghost-dev.db"
+    dbase = "/var/www/ghost/content/data/ghost.db"
     uid = "1"
     con = lite.connect(dbase)
     with con:

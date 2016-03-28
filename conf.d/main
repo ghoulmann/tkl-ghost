@@ -1,11 +1,12 @@
 #!/bin/bash -ex
-
+#curl -sL https://deb.nodesource.com/setup_5.x | bash -
+#apt-get install -y nodejs
 #Config Vars
-NODE_URL="http://nodejs.org/dist/v0.10.21/node-v0.10.21.tar.gz"
+NODE_URL="https://deb.nodesource.com/node_0.10/pool/main/n/nodejs/nodejs_0.10.40-1nodesource1~jessie1_amd64.deb"
 NODE_TARGET="/tmp/"
-NODE_V="node-v0.10.21"
+#NODE_V="node-v0.10.21"
 GHOST_URL="https://github.com/TryGhost/Ghost.git"
-GHOST_DIR="/opt/ghost"
+GHOST_DIR="/var/www/ghost/"
 #USERNAME="admin"
 #PASSWORD="turnkey"
 
@@ -15,17 +16,18 @@ pip install py-bcrypt
 
 #get node
 wget $NODE_URL -P $NODE_TARGET
-tar xvzf /tmp/$NODE_V.tar.gz -C $NODE_TARGET
-cd $NODE_TARGET/$NODE_V && ./configure
-cd $NODE_TARGET/$NODE_V && make
-cd $NODE_TARGET/$NODE_V && make install
+dpkg -i /tmp/nodejs_0.10.40-1nodesource1~jessie1_amd64.deb
+#cd $NODE_TARGET/$NODE_V && ./configure
+#cd $NODE_TARGET/$NODE_V && make
+#cd $NODE_TARGET/$NODE_V && make install
 
 #install sqlite3 with npm
 npm install sqlite3
 #Install forever globally
-
+npm install -g forever
 #Get Ghost from git
 git clone $GHOST_URL $GHOST_DIR
+cd $GHOST_DIR && git checkout stable
 #install sass and bourbon with gem
 cd $GHOST_DIR && gem install sass bourbon
 #updates casper theme
@@ -33,9 +35,10 @@ cd $GHOST_DIR && git submodule update --init
 cd $GHOST_DIR && npm install -g grunt-cli
 cd $GHOST_DIR && npm install --production
 cd $GHOST_DIR && grunt init
+cd $GHOST_DIR && grunt prod
 cd $GHOST_DIR && cp config.example.js config.js
 cd $GHOST_DIR && npm install -g forever
-chown -R www-data:www-data /opt/ghost
+chown -R www-data:www-data $GHOST_DIR
 
 #ghost daemon
 #chmod +x /etc/init.d/ghost
@@ -44,9 +47,10 @@ crontab /tmp/for_cron.txt
 
 #start ghost
 /usr/local/bin/ghost-starter.sh
-killall node
+#killall node
+#killall node
 #get db that is prepared for inithooks
-mv /tmp/ghost-dev.db /opt/ghost/content/data/
+mv /tmp/ghost-dev.db /var/www/ghost/content/data/ghost.db
 
 #nginx site enable
 ln -s /etc/nginx/sites-available/ghost /etc/nginx/sites-enabled/ghost
