@@ -7,8 +7,7 @@ GHOST_DIR="/opt/ghost/"
 
 # Get Ghost (Stable 0.7.8)
 wget $GHOST_URL -O /tmp/ghost.zip
-unzip /tmp/ghost.zip -D $GHOST_DIR
-chown -R node:node $GHOST_DIR
+unzip /tmp/ghost.zip -d $GHOST_DIR
 
 #Set node version (0.10.40 confirmed to work)
 cd $GHOST_DIR && npm install --production
@@ -20,6 +19,7 @@ ln -s /etc/nginx/sites-available/ghost /etc/nginx/sites-enabled/ghost
 rm /etc/nginx/sites-enabled/default
 
 
+chown -R node:node $GHOST_DIR
 
 # pm2
 cd $GHOST_DIR && su node --command "pm2 ./index.js --name Ghost --env production"

@@ -1,6 +1,4 @@
-#include <turnkey/base>
 #include <turnkey/nodejs>
 
 python-bcrypt
-python2.7-dev
 python-pysqlite2
