@@ -59,7 +59,7 @@ def main():
             d = Dialog('TurnKey Linux - First boot configuration')
 
         email = d.get_email("Ghost Email","Enter email address for the Ghost blogger account.","admin@example.com")
-    
+
     if not URL:
         if 'd' not in locals():
             d = Dialog('Turnkey Linux - First boot configuration')
@@ -76,7 +76,7 @@ def main():
             "Ghost Account Name",
             "Enter the Ghost blogger's name (real name recommended).",
             "Blogger Unknown")
-    
+
 #Kept for reference
 #hash = hashlib.md5(password).hexdigest()
 
@@ -99,6 +99,9 @@ def main():
         cur.execute('UPDATE Users SET status=\"active\" WHERE id="1";')
         con.commit()
 
+    for line in fileinput.FileInput("/opt/ghost/config.js",inplace=1):
+        line = line.replace("http://my-ghost-blog.com",addy)
+        print line
 
 if __name__ == "__main__":
     main()

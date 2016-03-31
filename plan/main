@@ -1,12 +1,5 @@
-#include <turnkey/base>
+#include <turnkey/nodejs>
 
-build-essential
-git
-nginx
-rubygems
-curl
-python-pygments
+python-bcrypt
 python2.7-dev
-python-setuptools
 python-pysqlite2
-rlwrap

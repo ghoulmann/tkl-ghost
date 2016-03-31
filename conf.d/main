@@ -1,60 +1,55 @@
 #!/bin/bash -ex
-#curl -sL https://deb.nodesource.com/setup_5.x | bash -
-#apt-get install -y nodejs
+
 #Config Vars
-NODE_URL="https://deb.nodesource.com/node_0.10/pool/main/n/nodejs/nodejs_0.10.40-1nodesource1~jessie1_amd64.deb"
-NODE_TARGET="/tmp/"
-#NODE_V="node-v0.10.21"
-GHOST_URL="https://github.com/TryGhost/Ghost.git"
-GHOST_DIR="/var/www/ghost/"
-#USERNAME="admin"
-#PASSWORD="turnkey"
+GHOST_URL="https://ghost.org/zip/ghost-0.7.8.zip"
+GHOST_DIR="/opt/ghost/"
 
-#python
-easy_install pip
-pip install py-bcrypt
+# Get Ghost (Stable 0.7.8)
+wget $GHOST_URL -O $GHOST_DIR
+chown -R node:node $GHOST_DIR
 
-#get node
-wget $NODE_URL -P $NODE_TARGET
-dpkg -i /tmp/nodejs_0.10.40-1nodesource1~jessie1_amd64.deb
-#cd $NODE_TARGET/$NODE_V && ./configure
-#cd $NODE_TARGET/$NODE_V && make
-#cd $NODE_TARGET/$NODE_V && make install
-
-#install sqlite3 with npm
-npm install sqlite3
-#Install forever globally
-npm install -g forever
-#Get Ghost from git
-git clone $GHOST_URL $GHOST_DIR
-cd $GHOST_DIR && git checkout stable
-#install sass and bourbon with gem
-cd $GHOST_DIR && gem install sass bourbon
-#updates casper theme
-cd $GHOST_DIR && git submodule update --init
-cd $GHOST_DIR && npm install -g grunt-cli
+#Set node version (0.10.40 confirmed to work)
 cd $GHOST_DIR && npm install --production
-cd $GHOST_DIR && grunt init
-cd $GHOST_DIR && grunt prod
-cd $GHOST_DIR && cp config.example.js config.js
-cd $GHOST_DIR && npm install -g forever
-chown -R www-data:www-data $GHOST_DIR
+mv /tmp/ghost-dev.db $GHOST_DIR/content/data/ghost.db
+
+#nginx considerations
+#ghost runs on 2368. Proxy to port 80 and port 443 (SSL/TLS)
+ln -s /etc/nginx/sites-available/ghost /etc/nginx/sites-enabled/ghost
+rm /etc/nginx/sites-enabled/default
+
+
+
+# pm2
+cd $GHOST_DIR && su node --command "pm2 ./index.js --name Ghost --env production"
+
+
+
+#install sass and bourbon with gem
+#cd $GHOST_DIR && gem install sass bourbon
+#updates casper theme
+#cd $GHOST_DIR && git submodule update --init
+#cd $GHOST_DIR && npm install -g grunt-cli
+#cd $GHOST_DIR && npm install --production
+#cd $GHOST_DIR && grunt init
+#cd $GHOST_DIR && grunt prod
+#cd $GHOST_DIR && cp config.example.js config.js
+#cd $GHOST_DIR && npm install -g forever
+#chown -R www-data:www-data $GHOST_DIR
 
 #ghost daemon
 #chmod +x /etc/init.d/ghost
 #update-rc.d ghost defaults
-crontab /tmp/for_cron.txt
+#crontab /tmp/for_cron.txt
 
 #start ghost
-/usr/local/bin/ghost-starter.sh
+#/usr/local/bin/ghost-starter.sh
 #killall node
 #killall node
 #get db that is prepared for inithooks
-mv /tmp/ghost-dev.db /var/www/ghost/content/data/ghost.db
 
 #nginx site enable
-ln -s /etc/nginx/sites-available/ghost /etc/nginx/sites-enabled/ghost
+#ln -s /etc/nginx/sites-available/ghost /etc/nginx/sites-enabled/ghost
 #disable default
-rm /etc/nginx/sites-enabled/default
+#rm /etc/nginx/sites-enabled/default
 #stop service
-/etc/init.d/nginx stop
+#/etc/init.d/nginx stop

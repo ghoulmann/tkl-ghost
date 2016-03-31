@@ -1,7 +1,0 @@
-#!/bin/bash -e
-# initialize Ghost
-
-. /etc/default/inithooks
-
-ghostdata=/var/www/ghost/content/data/ghost.db
-chown www-data:www-data $ghostdata
