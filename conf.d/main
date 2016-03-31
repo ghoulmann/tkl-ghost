@@ -4,8 +4,10 @@
 GHOST_URL="https://ghost.org/zip/ghost-0.7.8.zip"
 GHOST_DIR="/opt/ghost/"
 
+
 # Get Ghost (Stable 0.7.8)
-wget $GHOST_URL -O $GHOST_DIR
+wget $GHOST_URL -O /tmp/ghost.zip
+unzip /tmp/ghost.zip -D $GHOST_DIR
 chown -R node:node $GHOST_DIR
 
 #Set node version (0.10.40 confirmed to work)
